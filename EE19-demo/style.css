@@ -54,3 +54,29 @@ main {
 aside ul {
     list-style: none;
 }
+
+.cool-products {
+    float: left;
+    width: 100%;
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.bak-pic {
+    border: 2px black solid;
+}
+
+.bak-pic img {
+    width: 100%;
+    padding: 20px;
+}
+
+.bak-pic h2 {
+    text-align: center;
+}
+
+button {
+    width: 100%;
+    padding: 5px;
+}
