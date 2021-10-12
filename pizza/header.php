@@ -4,10 +4,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <style type="text/css">
         .brand {
-            background: #cbb09c !important;
+            background: #cc9200 !important;
         }
         .brand-text {
-            color: #cbb09c !important;
+            color: #cc9200 !important;
         }
         form {
             max-width: 460px;
@@ -16,12 +16,12 @@
         }
     </style>
 </head>
-<body class="grey lighten-4">
+<body class="black lighten-5">
     <nav class="white z-depth-0">
         <div class="container">
-            <a href="#" class="brand-logo brand-text">Ninja Pizza</a>
+            <a href="#" class="brand-logo brand-text">MilkFlix</a>
             <ul id="nav-mobile" class="right hide-on-small-and-down">
-                <li><a href="#" class="btn brand z-depth-0">Add a Pizza</a></li>
+                <li><a href="#" class="btn brand z-depth-0">Like milk?</a></li>
             </ul>
         </div>
     </nav>
