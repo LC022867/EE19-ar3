@@ -13,7 +13,7 @@
         <form action="backend.php" method="POST">
             <div class="mb-3">
                 <label for="textarea" class="form-label">Mata in en text</label>
-                <textarea type="text" class="form-control" id="textarea" name="text" rows="10"></textarea>
+                <textarea type="text" class="form-control" id="textarea" name="textarea" rows="10"></textarea>
             </div>
             <div class="kol2">
                 <p>Versaler eller Gemener?</p>
