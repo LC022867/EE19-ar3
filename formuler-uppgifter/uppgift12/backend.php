@@ -12,7 +12,7 @@
         <h3>Resultat</h3>
 
         <?php
-        $text = filter_input(INPUT_POST, 'text', FILTER_SANITIZE_STRING);
+        $text = filter_input(INPUT_POST, 'textarea', FILTER_SANITIZE_STRING);
         $riktning = filter_input(INPUT_POST, 'riktning', FILTER_SANITIZE_STRING);
 
         // OM riktning är l->u (lowercase to uppercase)

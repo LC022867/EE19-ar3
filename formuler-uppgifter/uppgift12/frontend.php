@@ -18,11 +18,11 @@
             <div class="kol2">
                 <p>Versaler eller Gemener?</p>
                 <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="lu" checked name="riktning" value="lu">
+                    <input class="form-check-input" type="radio" id="lu" checked name="riktning" value="lu">
                     <label class="form-check-label" for="lu">Versaler</label>
                 </div>
                 <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="ul" name="riktning" value="ul">
+                    <input class="form-check-input" type="radio" id="ul" name="riktning" value="ul">
                     <label class="form-check-label" for="ul">Gemener</label>
                 </div>
             </div>
