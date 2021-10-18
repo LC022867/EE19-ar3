@@ -25,9 +25,11 @@
         if (isset($_POST['radio'])) {
             $check = $_POST['radio'];
             if ($check == "tele") {
-                echo "\nVi kommer att kontakta dig inom $telefon";
+                echo " \nVi kommer att kontakta dig inom $telefon";
+                echo "<body style='background-color:pink'>";
             } else {
-                echo "\nWe will contact you in $epost";
+                echo " \nWe will contact you in $epost";
+                echo "<body style='background-color:red'>";
             }
         }
 
