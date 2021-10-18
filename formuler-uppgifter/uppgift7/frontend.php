@@ -34,12 +34,12 @@
             <div class="kol2">
                 <p>Hur vill du bli kontaktad?</p>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="radio" id="flexRadioDefault1">
+                    <input class="form-check-input" value="tele" type="radio" name="radio" id="flexRadioDefault1">
                     <label class="form-check-label" for="flexRadioDefault1">Telefon
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="radio" id="flexRadioDefault2" checked>
+                    <input class="form-check-input" value="post" type="radio" name="radio" id="flexRadioDefault2" checked>
                     <label class="form-check-label" for="flexRadioDefault2">Epost
                     </label>
                 </div>
