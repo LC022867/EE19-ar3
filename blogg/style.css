@@ -33,8 +33,11 @@ main p {
     margin: 20px;
 }
 main form {
-    margin: 20px;
+    margin: 20px 60px;
+    display: flex;
+    flex-direction: column;
 }
+
 main button {
     margin: 10px 0;
 }
