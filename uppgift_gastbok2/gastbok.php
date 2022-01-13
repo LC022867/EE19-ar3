@@ -28,7 +28,7 @@
             <label>Ange ditt namn</label>
             <input type="text" name="namn" required>
 
-            <button class="primary">Skicka</button>
+            <button class="primary" name="submit">Skicka</button>
         </form>
     </div>
 </body>

@@ -22,32 +22,34 @@
         </ul>
         <?php
         // Ta emot data som skickas
-        $rubrik = filter_input(INPUT_POST, 'rubrik', FILTER_SANITIZE_STRING);
-        $meddelande = filter_input(INPUT_POST, 'meddelande', FILTER_SANITIZE_STRING);
-        $namn = filter_input(INPUT_POST, 'namn', FILTER_SANITIZE_STRING);
+        if (isset($_POST['submit'])) {
+            $rubrik = filter_input(INPUT_POST, 'rubrik', FILTER_SANITIZE_STRING);
+            $meddelande = filter_input(INPUT_POST, 'meddelande', FILTER_SANITIZE_STRING);
+            $namn = filter_input(INPUT_POST, 'namn', FILTER_SANITIZE_STRING);
 
-        // Finns data?
-        if ($rubrik && $meddelande && $namn) {
+            // Finns data?
+            if ($rubrik && $meddelande && $namn) {
 
-            // Filnamnet 
-            $filnamn = "gästbok.txt";
-            setlocale(LC_ALL, "sv_SE.utf8");
-            $dagensDatum = strftime("%H:%M:%S %A %y %B");
-            // Texten att spara
+                // Filnamnet 
+                $filnamn = "gästbok.txt";
+                setlocale(LC_ALL, "sv_SE.utf8");
+                $dagensDatum = strftime("%H:%M:%S %A %y %B");
+                // Texten att spara
 
-            $texten = "<h3>$rubrik<br>";
-            $texten .= "$dagensDatum</h3>";
-            $texten .= "<p>$meddelande</p>";
-            $texten .= "<p>$namn</p>";
+                $texten = "<h3>$rubrik<br>";
+                $texten .= "$dagensDatum</h3>";
+                $texten .= "<p>$meddelande</p>";
+                $texten .= "<p>$namn</p>";
 
-            // Spara i textfil
-            file_put_contents($filnamn, $texten, FILE_APPEND);
+                // Spara i textfil
+                file_put_contents($filnamn, $texten, FILE_APPEND);
 
 
-            // Bekräftelse
-            echo "<p class=\"alert alert-success\">Meddelandet har sparats!</p>";
-        } else {
-            echo "<p class=\"alert alert-warning\">Bruttolön måste vara 10000 kr och 45000 kr.</p>";
+                // Bekräftelse
+                echo "<p class=\"alert alert-success\">Meddelandet har sparats!</p>";
+            } else {
+                echo "<p class=\"alert alert-warning\">Bruttolön måste vara 10000 kr och 45000 kr.</p>";
+            }
         }
         ?>
     </div>

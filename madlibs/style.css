@@ -13,7 +13,8 @@ body, h1, h2, h3, h4, h5, h6, p, ul {
 }
 
 body {
-    background: #F9F6EB;
+    background: url(./screenroad-FquDp5N1Gw0-unsplash.jpg);
+    background-size: cover;
 }
 .kontainer {
     width: 600px;
