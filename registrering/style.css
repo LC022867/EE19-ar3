@@ -1,17 +1,20 @@
 .kontainer {
     width: 800px;
-    padding: 1em;
-    margin: 5em auto;
+    padding: 2em;
+    margin: 2em auto;
     background-color: #e0e0e0;
-}
-
-.kontainer .title {
-    margin: 0.5em 0 0 1em;
 }
 
 
 form {
-    margin: 2.5em;
+    margin: 2em;
     background: #fff;
-    padding: 1.5em;
+    padding: 2em;
+    border-radius: 1em;
+}
+
+h1 {
+    font-size: 3em;
+    margin-bottom: 0.5em;
+    margin-left: 2em;
 }

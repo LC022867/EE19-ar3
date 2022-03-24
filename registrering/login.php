@@ -24,17 +24,11 @@ session_start();
         <h1>Bloggen</h1>
         <nav>
             <ul class="nav nav-tabs">
-                <?php
-                if ($_SESSION['inloggad'] == false) {
-                ?>
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="login.php">Login</a>
-                    </li>
-                <?php
-                }
-                ?>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Registera</a>
+                    <a class="nav-link active" aria-current="page" href="#">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="registera.php">Registera</a>
                 </li>
                 <?php
                 if ($_SESSION['inloggad'] == true) {
@@ -48,14 +42,8 @@ session_start();
             </ul>
         </nav>
         <main>
-            <form action="registera.php" method="POST">
-                <h3>Registera Användare</h3>
-                <div class="row mb-3">
-                    <label for="inputNamn" class="col-sm-2 col-form-label">Namn</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="inputNamn" name="namn">
-                    </div>
-                </div>
+            <form action="login.php" method="POST">
+                <h3>Login Användare</h3>
 
                 <div class="row mb-3">
                     <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
@@ -70,48 +58,42 @@ session_start();
                         <input type="password" class="form-control" id="inputLösenord" name="lösenord">
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Registrera</button>
+                <button type="submit" class="btn btn-primary">Login</button>
             </form>
             <?php
-            include "konfigdb.php";
 
             //ta emot data från formuläret
-            $namn = filter_input(INPUT_POST, "namn");
             $email = filter_input(INPUT_POST, "email");
             $lösenord = filter_input(INPUT_POST, "lösenord");
 
             //testa att det funkar
-            //var_dump($namn, $email, $lösenord);
+            //var_dump($email, $lösenord);
 
             //kolla att det är INTE null
-            if ($namn && $email && $lösenord) {
+            if ($email && $lösenord) {
                 //Kolla att användarnamnet eller email inte redan används
-                $sql = "SELECT *  FROM register WHERE namn='$namn' OR `epost`='$email'";
+                $sql = "SELECT *  FROM register WHERE `epost`='$email'";
 
                 //2. Kör SQL-kommandot
                 $resultat = $conn->query($sql);
 
-                //Hittar vi samma användarnamnet eller email?
-                if ($resultat->num_rows > 0) {
-                    echo "<p class=\"alert alert-warning\" role=\"alert\">Användarnamnet eller email används redan. Vg försök igen!!</p>";
+                // Gick det bra att köra SQL-satsen
+                if (!$resultat) {
+                    die("<p class=\"alert alert-warning\" role=\"alert\">Någoting är fel med SQL-satsen!</p>");
                 } else {
-                    //räkna fram ett hash på lösenordet
-                    $hash = password_hash($lösenord, PASSWORD_DEFAULT);
 
-                    //Lagra i databasen
-                    //1. SQL-kommandot
-                    $sql = "INSERT INTO register (namn, epost, hash) VALUES ('$namn', '$email', '$hash')";
-                    //echo $sql;
-                    //die();
+                    // Plocka ut svaret och lägg det i arrayen $rad
+                    $rad = $resultat->fetch_assoc();
+                    //var_dump($rad);
 
-                    //2. Kör SQL-kommandot
-                    $resultat = $conn->query($sql);
+                    // Kolla om lösenordet och hasen matchar
+                    if (password_verify($lösenord, $rad['hash'])) {
+                        echo "<p class=\"alert alert-success\"  role=\"alert\">Du är inloggad!</p>";
 
-                    //3. Funkade SQL-kommandot?
-                    if (!$resultat) {
-                        die("<p class=\"alert alert-warning\" role=\"alert\">Någoting är fel med SQL-satsen!</p>");
+                        // Kom ihåg att vi lyckades logga in
+                        $_SESSION['inloggad'] = true;
                     } else {
-                        echo "<p class=\"alert alert-success\"  role=\"alert\">Användaren $namn är registrerad!</p>";
+                        die("<p class=\"alert alert-warning\" role=\"alert\">Epost eller lösenordet stämmer inte!</p>");
                     }
                 }
             }
