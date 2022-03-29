@@ -1,6 +1,10 @@
 <?php
 include "konfigdb.php";
 session_start();
+
+if (!isset($_SESSION['inloggad'])) {
+    $_SESSION['inloggad'] = false;
+}
 ?>
 
 <!DOCTYPE html>
@@ -18,21 +22,29 @@ session_start();
     <?php
     if ($_SESSION['inloggad'] == true) {
         echo "<p class=\"alert alert-success\"  role=\"alert\">Du är inloggad!</p>";
+    } else {
+        echo "<p class=\"alert alert-warning\"  role=\"alert\">Du är utloggad!</p>";
     }
     ?>
     <div class="kontainer">
         <h1>Bloggen</h1>
         <nav>
             <ul class="nav nav-tabs">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="registera.php">Registera</a>
-                </li>
                 <?php
-                if ($_SESSION['inloggad'] == true) {
+                if ($_SESSION['inloggad'] == false) {
                 ?>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="login.php">Logga in</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="registera.php">Registrera</a>
+                    </li>
+                <?php
+                } else {
+                ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin.php">Admin</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="./logout.php">Logga ut</a>
                     </li>
@@ -92,6 +104,8 @@ session_start();
 
                         // Kom ihåg att vi lyckades logga in
                         $_SESSION['inloggad'] = true;
+
+                        header("location: admin.php");
                     } else {
                         die("<p class=\"alert alert-warning\" role=\"alert\">Epost eller lösenordet stämmer inte!</p>");
                     }

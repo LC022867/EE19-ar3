@@ -1,6 +1,10 @@
 <?php
 include "konfigdb.php";
 session_start();
+
+if (!isset($_SESSION['inloggad'])) {
+    $_SESSION['inloggad'] = false;
+}
 ?>
 
 <!DOCTYPE html>
@@ -16,8 +20,10 @@ session_start();
 
 <body>
     <?php
-    if ($_SESSION['inloggad'] == true) {
+    if (isset($_SESSION['inloggad']) && $_SESSION['inloggad'] == true) {
         echo "<p class=\"alert alert-success\"  role=\"alert\">Du är inloggad!</p>";
+    } else {
+        echo "<p class=\"alert alert-warning\"  role=\"alert\">Du är utloggad!</p>";
     }
     ?>
     <div class="kontainer">
@@ -28,17 +34,17 @@ session_start();
                 if ($_SESSION['inloggad'] == false) {
                 ?>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="login.php">Login</a>
+                        <a class="nav-link" aria-current="page" href="login.php">Logga in</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="registera.php active">Registrera</a>
                     </li>
                 <?php
-                }
+                } else {
                 ?>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Registera</a>
-                </li>
-                <?php
-                if ($_SESSION['inloggad'] == true) {
-                ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin.php">Admin</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="./logout.php">Logga ut</a>
                     </li>

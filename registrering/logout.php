@@ -1,6 +1,10 @@
 <?php
 include "konfigdb.php";
 session_start();
+
+if (!isset($_SESSION['inloggad'])) {
+    $_SESSION['inloggad'] = false;
+}
 ?>
 
 <!DOCTYPE html>
@@ -23,17 +27,17 @@ session_start();
                 if ($_SESSION['inloggad'] == false) {
                 ?>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="login.php">Login</a>
+                        <a class="nav-link" aria-current="page" href="login.php">Logga in</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="registera.php">Registrera</a>
                     </li>
                 <?php
-                }
+                } else {
                 ?>
-                <li class="nav-item">
-                    <a class="nav-link" href="registera.php">Registera</a>
-                </li>
-                <?php
-                if ($_SESSION['inloggad'] == true) {
-                ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin.php">Admin</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="./logout.php">Logga ut</a>
                     </li>
@@ -47,6 +51,7 @@ session_start();
             <?php
             $_SESSION['inloggad'] = false;
             echo "<p class=\"alert alert-success\"  role=\"alert\">Du är ut loggad</p>";
+            header("Location: login.php");
             ?>
         </main>
     </div>
