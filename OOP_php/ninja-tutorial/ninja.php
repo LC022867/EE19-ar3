@@ -15,9 +15,18 @@
     {
         // Properties -> (variable) | methods -> (functions)
 
-        //Properties
-        public $username = "Luciano";
-        public $email = "luciano.cucarano@gmail.com";
+        //Properties = variable
+        public $username = "";
+        public $email = "";
+
+        //Method = functions
+
+        //Konstruktor
+        public function __construct($userName, $email)
+        {
+            $this->username = $userName;
+            $this->email = $email; 
+        }
 
         public function addFriend()
         {
@@ -27,10 +36,10 @@
 
     // Skapa ett första objekt från klassen User
     // "new" skapar en instans (objekt) = $userOne
-    $userOne = new User();
+    $userOne = new User("luciano", "luciano.cucarano@gmail.com");
 
     // Skapa ett andra objekt från klassen User
-    $userTwo = new User();
+    $userTwo = new User("Mr Cow", "mister.cow@gmail.com");
 
     echo '<p>$userOne är klassen ' . get_class($userOne) . '</p>';
     echo '<p>$userTwo är klassen ' . get_class($userTwo) . '</p>';
