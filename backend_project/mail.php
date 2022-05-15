@@ -18,52 +18,66 @@
             <!--Start PHP kodning-->
 
             <?php
-
+            /*
             // Aktivera felmeddelanden under utveckling
             ini_set('display_errors', 1);
             ini_set('display_startup_errors', 1);
             error_reporting(E_ALL);
+            */
 
+            
             $rdir = str_replace("\\", "/", __DIR__);                    //Root Dir
+            
             require $rdir . '/PHPMailer/src/Exception.php';
             require $rdir . '/PHPMailer/src/PHPMailer.php';
             require $rdir . '/PHPMailer/src/SMTP.php';
+            
 
             use PHPMailer\PHPMailer\PHPMailer;
 
             $mail = new PHPMailer;
 
-            $mail->SMTPDebug = 3;                                 // Enable verbose debug output
+            if (isset($_POST['skicka'])) {
+                //$mail->SMTPDebug = 3;                                 // Enable verbose debug output
+            
+                //Hämta data 
+                $message = $_POST['message'];
+                $email = $_POST['email'];
+                $subject = $_POST['handling'];
+                $name = $_POST['name'];
 
-            $mail->isSMTP();                                      // Set mailer to use SMTP
-            $mail->Host = 'smtp.gmail.com';                       // Specify main and backup SMTP servers
-            $mail->SMTPAuth = true;                               // Enable SMTP authentication
-            $mail->Username = 'tbaba1882@gmail.com';                              // SMTP username
-            $mail->Password = 'K?R?JLX$9kqq5fdti3bDYn';                              // SMTP password
-            $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-            $mail->Port = 587;                                    // TCP port to connect to
+                $mail->isSMTP();                                      // Set mailer to use SMTP
+                $mail->Host = 'smtp.gmail.com';                       // Specify main and backup SMTP servers
+                $mail->SMTPAuth = true;                               // Enable SMTP authentication
+                $mail->Username = 'tbaba1882@gmail.com';                              // SMTP username
+                $mail->Password = 'K?R?JLX$9kqq5fdti3bDYn';                              // SMTP password
+                $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+                $mail->Port = 587;                                    // TCP port to connect to
 
-            $mail->setFrom('tbaba1882@gmail.com', 'Mailer');
-            $mail->addAddress('luciano.cucarano@gmail.com', 'Luciano Cucarano');     // Add a recipient
-            //$mail->addAddress('ellen@example.com');               // Name is optional
-            //$mail->addReplyTo('info@example.com', 'Information');
-            //$mail->addCC('cc@example.com');
-            //$mail->addBCC('bcc@example.com');
+                $mail->setFrom('tbaba1882@gmail.com', 'Mailer');
+                $mail->addAddress($email , $name);     // Add a recipient
+                //$mail->addAddress('ellen@example.com');               // Name is optional
+                //$mail->addReplyTo('info@example.com', 'Information');
+                //$mail->addCC('cc@example.com');
+                //$mail->addBCC('bcc@example.com');
 
-            //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
-            //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
-            //$mail->isHTML(true);                                  // Set email format to HTML
+                //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+                //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+                //$mail->isHTML(true);                                  // Set email format to HTML
 
-            $mail->Subject = 'PHPMailer GMail SMTP test';
-            $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-            $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+                $mail->Subject = $subject;
+                $mail->Body    = $message;
+                $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
-            if (!$mail->send()) {
-                echo 'Message could not be sent.';
-                echo 'Mailer Error: ' . $mail->ErrorInfo;
-            } else {
-                echo 'Message has been sent';
+                if (!$mail->send()) {
+                    echo 'Message could not be sent.';
+                    echo 'Mailer Error: ' . $mail->ErrorInfo;
+                } else {
+                    echo 'Message has been sent';
+                }
             }
+
+
             ?>
             <?php
             /*
@@ -101,6 +115,9 @@
             ?>
             <!--Slut PHP kodning-->
             <form action="mail.php" method="POST" autocapitalize="off">
+                <div class="form-group">
+                    <input name="name" type="text" class="form-control" placeholder="Ditt namn..">
+                </div>
                 <div class="form-group">
                     <input name="email" type="email" class="form-control" placeholder="admin.lol@gmail.com">
                 </div>
