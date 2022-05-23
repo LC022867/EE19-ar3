@@ -11,11 +11,8 @@
 
 <body>
     <?php
+    //lägger till proccess.php en gång
     require_once 'proccess.php';
-
-    $mysqli = new mysqli('localhost', 'admin', 'pass', 'tableProject') or die(mysqli_error($mysqli));
-
-    $resultat = $mysqli->query("SELECT * FROM genchara") or die($mysqli->error);
 
     //pre_r($resultat);
     //pre_r($resultat->fetch_assoc());
@@ -27,6 +24,8 @@
     //    print_r($array);
     //    echo '</pre>';
     //}
+
+    //Lägger till mychcaracter.php
     require 'mycharacter.php';
     ?>
     <div class="mb-3">
@@ -85,9 +84,12 @@
                     </div>
                 </div>
             </fieldset>
-            <div class="col-12">
+            <div class="mb-3">
                 <button type="submit" class="btn btn-primary" name="save">Save</button>
             </div>
+            <div class="mb-3">
+                    <a href="mail.php" class="btn btn-primary">Mailer</a>
+                </div>
         </form>
     </div>
 </body>

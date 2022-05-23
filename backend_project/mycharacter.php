@@ -55,7 +55,7 @@
                             <td><?php echo $row['position'] ?></td>
                             <td>
                                 <a href="index.php?edit=<?php echo $row['id']; ?>" class="btn btn-info">Uppdatera</a>
-                                <a href="proccess.php?delete=<?php echo $row['id']; ?>" class="btn btn-danger">Radera</a>
+                                <a href="proccess.php?radera=<?php echo $row['id'];?>" class="btn btn-danger">Radera</a>
                             </td>
                         </tr>
             <?php

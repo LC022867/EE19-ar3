@@ -25,13 +25,13 @@
             error_reporting(E_ALL);
             */
 
-            
+
             $rdir = str_replace("\\", "/", __DIR__);                    //Root Dir
-            
+
             require $rdir . '/PHPMailer/src/Exception.php';
             require $rdir . '/PHPMailer/src/PHPMailer.php';
             require $rdir . '/PHPMailer/src/SMTP.php';
-            
+
 
             use PHPMailer\PHPMailer\PHPMailer;
 
@@ -39,7 +39,7 @@
 
             if (isset($_POST['skicka'])) {
                 //$mail->SMTPDebug = 3;                                 // Enable verbose debug output
-            
+
                 //Hämta data 
                 $message = $_POST['message'];
                 $email = $_POST['email'];
@@ -55,7 +55,7 @@
                 $mail->Port = 587;                                    // TCP port to connect to
 
                 $mail->setFrom('tbaba1882@gmail.com', 'Mailer');
-                $mail->addAddress($email , $name);     // Add a recipient
+                $mail->addAddress($email, $name);     // Add a recipient
                 //$mail->addAddress('ellen@example.com');               // Name is optional
                 //$mail->addReplyTo('info@example.com', 'Information');
                 //$mail->addCC('cc@example.com');
@@ -64,6 +64,7 @@
                 //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
                 //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
                 //$mail->isHTML(true);                                  // Set email format to HTML
+
 
                 $mail->Subject = $subject;
                 $mail->Body    = $message;
@@ -129,6 +130,9 @@
                 </div>
                 <div class="form-group">
                     <button name="skicka" type="submit" class="form-control btn-primary" value="skicka">Skicka</button>
+                </div>
+                <div class="form-group">
+                    <a href="index.php" class="btn btn-primary">Tabellen</a>
                 </div>
             </form>
         </div>
